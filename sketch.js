@@ -13,7 +13,7 @@ var witchImg
 var PLAY = 1
 var END = 0
 var gameState = PLAY
-
+var backgroundImg
 
 var obstacleGroup 
 
@@ -23,7 +23,7 @@ function preload(){
   signImg = loadImage("images/sign.png")
   bushImg = loadImage("images/bush.png")
   witchImg = loadImage("images/witch.png")
-
+  backgroundImg = loadImage("images/town.png")
 
 }
 
@@ -44,20 +44,43 @@ function draw() {
 
 
   Engine.update(engine)
-  background("white")
+
+  background()
 
   if(gameState === PLAY){
     createObstacles()
+
+    if(keyWentDown("space")){
+      boy.image = loadImage("images/jump.png")
+    }
+    if(keyWentUp("space")){
+      boy.image = loadImage("images/riding.png")
+    }
+
+    if(keyWentDown("DOWN_ARROW")){
+      boy.image = loadImage("images/neeling.png")
+    }
+    if(keyWentUp("DOWN_ARROW")){
+      boy.image = loadImage("images/riding.png")
+    }
+
     if(boy.boySprite.isTouching(obstacleGroup)){
       gameState = END
     }
 
   }else if(gameState === END){
     obstacleGroup.setVelocityXEach(0)
-    ghost.body.velocity.x = 1
+    Matter.Body.setVelocity(ghost.body,{x : 1 , y : 0 })
     
+    if(ghost.ghostSprite.isTouching(boy.boySprite)){
+      console.log(ghost.body)
+      Matter.Body.setSpeed(ghost.body,0)
+      Matter.Body.setSpeed(boy.body,0)
+      Matter.Body.setVelocity(ghost.body,{x : 0 , y : 0 })
+      Matter.Body.setVelocity(boy.body,{x : 0 , y : 0 })
+      text("Boy Was Caught",windowWidth/2,windowHeight-1000)
+    }
   }
-
 
   boy.display()
   ground.display()
