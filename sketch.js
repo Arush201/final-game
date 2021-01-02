@@ -167,7 +167,7 @@ function createObstacles(){
 }
 
 function keyPressed(){
-  if(keyCode === 32 && gameState === PLAY  && boy.y >= windowHeight - 95 ){
+  if(keyCode === 32 && gameState === PLAY  && boy.y >=  500 ){
     boy.velocityY = -13
   }
 }
