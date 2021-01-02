@@ -154,7 +154,7 @@ function createObstacles(){
     }else{
       obstacle.addImage(witchImg)
       obstacle.scale = 0.3
-      obstacle.y = windowHeight - 180
+      obstacle.y = windowHeight - 150
     }
     
     obstacle.velocityX = -5
@@ -167,7 +167,7 @@ function createObstacles(){
 }
 
 function keyPressed(){
-  if(keyCode === 32 && gameState === PLAY  && boy.y >= 742 ){
+  if(keyCode === 32 && gameState === PLAY  && boy.y >= windowHeight - 95 ){
     boy.velocityY = -13
   }
 }
