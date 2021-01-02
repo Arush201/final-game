@@ -6,7 +6,6 @@ class Boy{
         this.boySprite = createSprite(x,y,width,height)
         this.boySprite.visible = false
         this.body = Bodies.rectangle(x,y,width,height,options)
-        this.image = loadImage("images/riding.png")
         this.width = width
         this.height = height
         World.add(world,this.body)

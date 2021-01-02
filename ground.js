@@ -11,7 +11,7 @@ class Ground{
     
     display(){
         push()
-        fill("black")
+        fill("white")
         rectMode(CENTER)
         rect(this.body.position.x,this.body.position.y,this.width,this.height)
         pop()
